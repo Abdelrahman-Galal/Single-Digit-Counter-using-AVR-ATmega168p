@@ -32,8 +32,11 @@ flash: $(TARGET).hex
 	@$(AVRDUDE) -C $(CONF_FILE) -c $(PROGRAMMER_TYPE) -p $(MCU) -U flash:w:$<
 
 clean:
-	del -f *.elf *.hex *.o *.map
+	@rm -f *.elf *.hex *.o *.map
 
-.PHONY: all size compile flash clean
+clean-for-win:
+	@del -f *.elf *.hex *.o *.map
+
+.PHONY: all size compile flash clean clean-for-win
 
 all: $(TARGET).hex
